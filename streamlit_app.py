@@ -69,8 +69,8 @@ for param in distribution_type.keys():
         #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
         #param_values[param] = (float(mm_value[0]), float(mm_value[1]))
      
-        max_value = st.text_input(f'Enter max value for {param}',1)
-        min_value = st.text_input(f'Enter max value for {param}',1)
+        max_value = st.text_input(f'Enter max value for {param}',2)
+        min_value = st.text_input(f'Enter min value for {param}',1)
         param_values[param] = (float(min_value), float(max_value))
 
 
