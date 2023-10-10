@@ -56,7 +56,7 @@ distribution_type = {
 
 }
 
- 
+st.image("inflowTunnels.png")
 
 # Define the bounds or mean and std dev for each parameter
 col1, col2 = st.columns(2)
