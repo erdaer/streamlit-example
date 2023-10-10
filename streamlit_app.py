@@ -59,6 +59,8 @@ show_subplots = st.sidebar.checkbox('Show subplots')
 # Add selectbox to the sidebar
 plot_option = st.sidebar.selectbox('Choose a plot option', ['Same plot', 'Different subplots'])
 
+# Add checkbox to the sidebar
+dwnl = st.sidebar.checkbox('Show option for downloading?')        
 
 st.image("inflowTunnels.png")
 
@@ -164,17 +166,18 @@ st.write(q_stats)
 q_ensemble_df.to_excel('q_ensemble.xlsx', index=False)
 q_inj_ensemble_df.to_excel('q_inj_ensemble.xlsx', index=False)
 
-# Add download buttons for the Excel files
-st.download_button(
-    label="Download q ensemble data",
-    data=pd.read_excel("q_ensemble.xlsx").to_csv(index=False).encode(),
-    file_name="q_ensemble.csv",
-    mime="text/csv",
-)
-
-st.download_button(
-    label="Download q_inj ensemble data",
-    data=pd.read_excel("q_inj_ensemble.xlsx").to_csv(index=False).encode(),
-    file_name="q_inj_ensemble.csv",
-    mime="text/csv",
-)
+if dwnl:
+   # Add download buttons for the Excel files
+   st.download_button(
+       label="Download q ensemble data",
+       data=pd.read_excel("q_ensemble.xlsx").to_csv(index=False).encode(),
+       file_name="q_ensemble.csv",
+       mime="text/csv",
+   )
+   
+   st.download_button(
+       label="Download q_inj ensemble data",
+       data=pd.read_excel("q_inj_ensemble.xlsx").to_csv(index=False).encode(),
+       file_name="q_inj_ensemble.csv",
+       mime="text/csv",
+   )
