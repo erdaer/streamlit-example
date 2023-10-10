@@ -13,7 +13,7 @@ def compute_q_ensemble(K, H, r, psi):
     q_ensemble = (2 * np.pi * K * H) / (np.log(2 * H / r) + psi)
 
     return q_ensemble
-e
+
  
 
 def compute_q_inj_ensemble(K, H, r, psi, K_inj_factor, tau):
