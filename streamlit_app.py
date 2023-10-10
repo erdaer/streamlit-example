@@ -138,7 +138,7 @@ if plot_option == 'Same plot':
     plt.legend(loc='upper right')
     st.pyplot(plt)
 elif plot_option == 'Different subplots':
-    fig, axs = plt.subplots(1, 2)
+    fig, axs = plt.subplots(1, 2,,figsize=(10,7))
     axs[0].hist(q_ensemble, bins=50)
     axs[0].set_title('q')
     axs[1].hist(q_inj_ensemble, bins=50)
