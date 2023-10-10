@@ -70,13 +70,13 @@ for param in distribution_type.keys():
 
         #max_value = st.text_input(f'Enter max value for {param}')
 
-        param_values[param] = (float(min_value), float(max_value))
+        param_values[param] = (float(mm_value[0]), float(mm_value[1]))
 
     elif distribution_type[param] == 'normal':
 
-        mean_value = st.text_input(f'Enter mean value for {param}')
+        mean_value = st.text_input(f'Enter mean value for {param}',50)
 
-        stddev_value = st.text_input(f'Enter std dev value for {param}')
+        stddev_value = st.text_input(f'Enter std dev value for {param}',50)
 
         param_values[param] = (float(mean_value), float(stddev_value))
 
