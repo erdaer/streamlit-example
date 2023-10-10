@@ -13,7 +13,7 @@ def compute_q_ensemble(K, H, r, psi):
     q_ensemble = (2 * np.pi * K * H) / (np.log(2 * H / r) + psi)
 
     return q_ensemble
-
+e
  
 
 def compute_q_inj_ensemble(K, H, r, psi, K_inj_factor, tau):
@@ -94,7 +94,7 @@ samples = {}
 for param in parameters: 
     if distribution_type[param] == 'uniform':
             if param == 'K':     
-                print('K as log')
+                st.write('K as log')
                 samples[param] = np.exp(np.random.uniform(low=np.log(param_values[param][0]), high=np.log(param_values[param][1]), size=n_samples))
             else:
                 samples[param] = np.random.uniform(low=param_values[param][0], high=param_values[param][1], size=n_samples)             
