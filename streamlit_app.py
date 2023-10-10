@@ -66,11 +66,11 @@ col1, col2 = st.columns(2)
 param_values = {}
 
 for param in distribution_type.keys():
-    st.write(param)
+    
     if distribution_type[param] == 'uniform':
 
         #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
-        #param_values[param] = (float(mm_value[0]), float(mm_value[1]))
+        #param_values[param] = (float(mm_value[0]), float(mm_value[e1]))
      
         max_value = col2.text_input(f'Enter max value for {param}',2)
         min_value = col1.text_input(f'Enter min value for {param}',1)
@@ -85,7 +85,8 @@ for param in distribution_type.keys():
 
         param_values[param] = (float(mean_value), float(stddev_value))
         
-        
+# Add checkbox to the sidebar
+show_subplots = st.sidebar.checkbox('Show subplots')        
 
 # Generate random samples for K, H, r, psi, K_inj_factor and tau
 
@@ -113,7 +114,14 @@ q_ensemble = compute_q_ensemble(samples['K'], samples['H'], samples['r'], sample
 
 q_inj_ensemble = compute_q_inj_ensemble(samples['K'], samples['H'], samples['r'], samples['psi'], samples['K_inj_factor'], samples['tau'])
 
- 
+# Create a new figure with 2x3 subplots
+if show_subplots:
+    fig, axs = plt.subplots(2, 3)
+    parameters_for_subplots = parameters[:6]
+    for i, ax in enumerate(axs.flatten()):
+        ax.hist(samples[parameters_for_subplots[i]], bins=50)
+        ax.set_title(parameters_for_subplots[i])
+    st.pyplot(fig) 
 
 # Create a new figure
 
