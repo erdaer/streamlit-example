@@ -59,6 +59,7 @@ distribution_type = {
  
 
 # Define the bounds or mean and std dev for each parameter
+col1, col2 = st.beta_columns(2)
 
 param_values = {}
 
@@ -69,16 +70,16 @@ for param in distribution_type.keys():
         #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
         #param_values[param] = (float(mm_value[0]), float(mm_value[1]))
      
-        max_value = st.text_input(f'Enter max value for {param}',2)
-        min_value = st.text_input(f'Enter min value for {param}',1)
+        max_value = col1.text_input(f'Enter max value for {param}',2)
+        min_value = col2.text_input(f'Enter min value for {param}',1)
         param_values[param] = (float(min_value), float(max_value))
 
 
     elif distribution_type[param] == 'normal':
 
-        mean_value = st.text_input(f'Enter mean value for {param}',50)
+        mean_value = col1.text_input(f'Enter mean value for {param}',50)
 
-        stddev_value = st.text_input(f'Enter std dev value for {param}',50)
+        stddev_value = col2.text_input(f'Enter std dev value for {param}',50)
 
         param_values[param] = (float(mean_value), float(stddev_value))
 
