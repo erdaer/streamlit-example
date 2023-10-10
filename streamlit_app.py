@@ -84,7 +84,7 @@ for param in distribution_type.keys():
         param_values[param] = (float(mean_value), float(stddev_value))
         
         with col3:
-             plt.plot([0,1],[0,1],'-o')
+             st.write('test')#plt.plot([0,1],[0,1],'-o')
 
 # Generate random samples for K, H, r, psi, K_inj_factor and tau
 
