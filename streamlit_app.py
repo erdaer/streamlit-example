@@ -116,7 +116,7 @@ q_inj_ensemble = compute_q_inj_ensemble(samples['K'], samples['H'], samples['r']
 
 # Create a new figure with 2x3 subplots
 if show_subplots:
-    fig, axs = plt.subplots(2, 3,figsize=(8,15))
+    fig, axs = plt.subplots(2, 3,figsize=(8,10))
     parameters_for_subplots = parameters[:6]
     for i, ax in enumerate(axs.flatten()):
         ax.hist(samples[parameters_for_subplots[i]], bins=50)
