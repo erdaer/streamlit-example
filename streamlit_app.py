@@ -78,7 +78,7 @@ for param in distribution_type.keys():
 
        
     elif distribution_type[param] == 'normal':
-        if 
+         
         mean_value = col1.text_input(f'Enter mean value for {param}',1)
 
         stddev_value = col2.text_input(f'Enter std dev value for {param}',1)
