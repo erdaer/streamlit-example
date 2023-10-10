@@ -58,13 +58,15 @@ distribution_type = {
 
 st.image("inflowTunnels.png")
 
+
+
 # Define the bounds or mean and std dev for each parameter
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 param_values = {}
 
 for param in distribution_type.keys():
-
+    st.write(param)
     if distribution_type[param] == 'uniform':
 
         #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
@@ -76,7 +78,7 @@ for param in distribution_type.keys():
 
        
     elif distribution_type[param] == 'normal':
-
+        if 
         mean_value = col1.text_input(f'Enter mean value for {param}',1)
 
         stddev_value = col2.text_input(f'Enter std dev value for {param}',1)
@@ -84,11 +86,6 @@ for param in distribution_type.keys():
         param_values[param] = (float(mean_value), float(stddev_value))
         
         
-        col3.write('test')#plt.plot
-        plt.figure()
-        plt.plot([0,1],[0,1],'-o')
-        
-        col3.pyplot(plt)
 
 # Generate random samples for K, H, r, psi, K_inj_factor and tau
 
@@ -105,7 +102,7 @@ for param in parameters:
                 samples[param] = np.random.uniform(low=param_values[param][0], high=param_values[param][1], size=n_samples)             
 
     elif distribution_type[param] == 'normal':
-
+      
         samples[param] = np.random.normal(loc=param_values[param][0], scale=param_values[param][1], size=n_samples)
 
  
