@@ -55,6 +55,12 @@ distribution_type = {
     'tau': st.sidebar.selectbox('Distribution type for tau', ['uniform', 'normal'])
 
 }
+# Add checkbox to the sidebar
+show_subplots = st.sidebar.checkbox('Show subplots')        
+
+# Add selectbox to the sidebar
+plot_option = st.sidebar.selectbox('Choose a plot option', ['Same plot', 'Different subplots'])
+
 
 st.image("inflowTunnels.png")
 
@@ -85,8 +91,7 @@ for param in distribution_type.keys():
 
         param_values[param] = (float(mean_value), float(stddev_value))
         
-# Add checkbox to the sidebar
-show_subplots = st.sidebar.checkbox('Show subplots')        
+
 
 # Generate random samples for K, H, r, psi, K_inj_factor and tau
 
@@ -124,40 +129,20 @@ if show_subplots:
     fig.tight_layout()
     st.pyplot(fig) 
 
-# Create a new figure
-
-plt.figure()
-
- 
-
-# Plot histogram for q_ensemble
-
-plt.hist(q_ensemble, bins=50, alpha=0.5, label='q')
-
- 
-
-# Plot histogram for q_inj_ensemble
-
-plt.hist(q_inj_ensemble, bins=50, alpha=0.5, label='q_inj')
-
- 
-
-# Add title and labels
-
-plt.title('Histograms for q and q_inj')
-
-plt.xlabel('Value')
-
-plt.ylabel('Frequency')
-
- 
-
-# Add legend
-
-plt.legend(loc='upper right')
-
- 
-
-# Display the plot in Streamlit
-
-st.pyplot(plt)
+# Plot q and q_inj based on the selected option
+if plot_option == 'Same plot':
+    plt.figure()
+    plt.hist(q_ensemble, bins=50, alpha=0.5, label='q')
+    plt.hist(q_inj_ensemble, bins=50, alpha=0.5, label='q_inj')
+    plt.title('Histograms for q and q_inj')
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.legend(loc='upper right')
+    st.pyplot(plt)
+elif plot_option == 'Different subplots':
+    fig, axs = plt.subplots(1, 2)
+    axs[0].hist(q_ensemble, bins=50)
+    axs[0].set_title('q')
+    axs[1].hist(q_inj_ensemble, bins=50)
+    axs[1].set_title('q_inj')
+    st.pyplot(fig)
