@@ -82,8 +82,8 @@ for param in distribution_type.keys():
         stddev_value = col2.text_input(f'Enter std dev value for {param}',1)
 
         param_values[param] = (float(mean_value), float(stddev_value))
-
-        col3.plot([0,1],[0,1])
+        with col3:
+          plt.plot([0,1],[0,1])
 
 # Generate random samples for K, H, r, psi, K_inj_factor and tau
 
