@@ -1,9 +1,7 @@
 import streamlit as st
-
 import numpy as np
-
 import matplotlib.pyplot as plt
-
+import pandas as pd
  
 
 def compute_q_ensemble(K, H, r, psi):
@@ -146,3 +144,26 @@ elif plot_option == 'Different subplots':
     axs[1].hist(q_inj_ensemble, bins=50)
     axs[1].set_title('q_inj')
     st.pyplot(fig)
+
+# Convert q_ensemble and q_inj_ensemble to pandas DataFrames
+q_ensemble_df = pd.DataFrame(q_ensemble, columns=['q'])
+q_inj_ensemble_df = pd.DataFrame(q_inj_ensemble, columns=['q_inj'])
+
+# Write the DataFrames to Excel files
+q_ensemble_df.to_excel('q_ensemble.xlsx', index=False)
+q_inj_ensemble_df.to_excel('q_inj_ensemble.xlsx', index=False)
+
+# Add download buttons for the Excel files
+st.download_button(
+    label="Download q ensemble data",
+    data=pd.read_excel("q_ensemble.xlsx").to_csv(index=False).encode(),
+    file_name="q_ensemble.csv",
+    mime="text/csv",
+)
+
+st.download_button(
+    label="Download q_inj ensemble data",
+    data=pd.read_excel("q_inj_ensemble.xlsx").to_csv(index=False).encode(),
+    file_name="q_inj_ensemble.csv",
+    mime="text/csv",
+)
