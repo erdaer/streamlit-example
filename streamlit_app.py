@@ -32,7 +32,7 @@ def compute_q_inj_ensemble(K, H, r, psi, K_inj_factor, tau):
 
 # Use Streamlit widgets to get user input
 
-n_samples = st.sidebar.slider('Number of samples', 1000, 10000, 5000)
+n_samples = st.sidebar.slider('Number of samples', 1000, 500000, 5000)
 
  
 
@@ -149,16 +149,16 @@ elif plot_option == 'Different subplots':
 q_ensemble_df = pd.DataFrame(q_ensemble, columns=['q'])
 q_inj_ensemble_df = pd.DataFrame(q_inj_ensemble, columns=['q_inj'])
 
-# Get descriptive statistics for q and q_inj
-q_ensemble_stats = q_ensemble_df.describe()
-q_inj_ensemble_stats = q_inj_ensemble_df.describe()
+# Join q and q_inj into one DataFrame
+q_df = pd.concat([q_ensemble_df, q_inj_ensemble_df], axis=1)
+
+# Get descriptive statistics for the DataFrame
+q_stats = q_df.describe()
 
 # Display the statistics in Streamlit
-st.header('Descriptive Statistics for q')
-st.write(q_ensemble_stats)
+st.header('Descriptive Statistics for q and q_inj')
+st.write(q_stats)
 
-st.header('Descriptive Statistics for q_inj')
-st.write(q_inj_ensemble_stats)
 
 # Write the DataFrames to Excel files
 q_ensemble_df.to_excel('q_ensemble.xlsx', index=False)
