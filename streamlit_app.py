@@ -70,16 +70,16 @@ for param in distribution_type.keys():
         #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
         #param_values[param] = (float(mm_value[0]), float(mm_value[1]))
      
-        max_value = col1.text_input(f'Enter max value for {param}',2)
-        min_value = col2.text_input(f'Enter min value for {param}',1)
+        max_value = col2.text_input(f'Enter max value for {param}',2)
+        min_value = col1.text_input(f'Enter min value for {param}',1)
         param_values[param] = (float(min_value), float(max_value))
 
 
     elif distribution_type[param] == 'normal':
 
-        mean_value = col1.text_input(f'Enter mean value for {param}',50)
+        mean_value = col1.text_input(f'Enter mean value for {param}',1)
 
-        stddev_value = col2.text_input(f'Enter std dev value for {param}',50)
+        stddev_value = col2.text_input(f'Enter std dev value for {param}',1)
 
         param_values[param] = (float(mean_value), float(stddev_value))
 
@@ -91,11 +91,13 @@ parameters = ['K', 'H', 'r', 'psi', 'K_inj_factor', 'tau']
 
 samples = {}
 
-for param in parameters:
-
+for param in parameters: 
     if distribution_type[param] == 'uniform':
-
-        samples[param] = np.random.uniform(low=param_values[param][0], high=param_values[param][1], size=n_samples)
+            if param == 'K':     
+                print('K as log')
+                samples[param] = np.exp(np.random.uniform(low=np.log(param_values[param][0]), high=np.log(param_values[param][1]), size=n_samples))
+            else:
+                samples[param] = np.random.uniform(low=param_values[param][0], high=param_values[param][1], size=n_samples)             
 
     elif distribution_type[param] == 'normal':
 
