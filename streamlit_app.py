@@ -59,7 +59,7 @@ distribution_type = {
  
 
 # Define the bounds or mean and std dev for each parameter
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 
 param_values = {}
 
