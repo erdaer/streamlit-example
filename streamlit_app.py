@@ -66,11 +66,13 @@ for param in distribution_type.keys():
 
     if distribution_type[param] == 'uniform':
 
-        mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
+        #mm_values = st.slider(f'Enter min value for {param}',1,100,(2,50))
+        #param_values[param] = (float(mm_value[0]), float(mm_value[1]))
+     
+        max_value = st.text_input(f'Enter max value for {param}',1)
+        min_value = st.text_input(f'Enter max value for {param}',1)
+        param_values[param] = (float(min_value), float(max_value))
 
-        #max_value = st.text_input(f'Enter max value for {param}')
-
-        param_values[param] = (float(mm_value[0]), float(mm_value[1]))
 
     elif distribution_type[param] == 'normal':
 
